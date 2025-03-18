@@ -12,7 +12,7 @@ from model.model import Model
 class OpenAIModel(Model):
     def __init__(self, model:str, api_key:str):
         self.model = model
-        self.client = OpenAI(api_key=os.env("OPENAI_API_KEY"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def make_request(self, prompt):
         attempts = 0

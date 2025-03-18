@@ -3,11 +3,10 @@ import sys
 
 from arg_parser.arg_parser import ArgParser
 from config_loader.config_loader import ConfigLoader
+from model.openai_model import OpenAIModel
+from translator.pdf_translator import PDFTranslator
 
 sys.path.append('./')
-
-import arg_parser
-import model
 
 if __name__ == '__main__':
     arg_parser = ArgParser()
@@ -20,6 +19,8 @@ if __name__ == '__main__':
 
     model = OpenAIModel(model=model_name, api_key=openai_api_key)
 
+    pdf_file_path = args.book if args.book else config['common']['book']
+    file_format = args.file_format if args.file_format else config['common']['file_format']
 
-
-    if args.openai_model
+    translator = PDFTranslator(model)
+    translator.translate_pdf(pdf_file_path, file_format)
